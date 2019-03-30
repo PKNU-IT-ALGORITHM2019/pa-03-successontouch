@@ -179,7 +179,7 @@ void bubble(int N) {
 	}
 }
 void rand_create(int N) {
-	//·£´ý
+	//Â·Â£Â´Ã½
 	
 	for (int i = 0; i < N; i++) {
 		man[i] = rand() % N+1;
@@ -258,30 +258,30 @@ void main()
 			printf("Random1000\tReverse1000\tRandom10000\tReverse10000\tRandom100000\tReverse100000\n");
 
 
-			for (int i = 5; i <= 7; i++) {
+			for (int i = 0; i <= 7; i++) {
 				
 				
 				int time = fun(1, i, 1000);
-				printf("%.3lfÃÊ\t", time / 100.0);
+				printf("%.3lfÃƒÃŠ\t", time / 100.0);
 
 				time = fun(2, i, 1000);
-				printf("\t%.3lfÃÊ\t", time / 100.0);
+				printf("\t%.3lfÃƒÃŠ\t", time / 100.0);
 
 				
 				time = fun(1, i, 10000);
-				printf("\t%.3lfÃÊ\t", time / 100.0);
+				printf("\t%.3lfÃƒÃŠ\t", time / 100.0);
 
 				time = fun(2, i, 10000);
 
-				printf("\t%.3lfÃÊ\t", time / 100.0);
+				printf("\t%.3lfÃƒÃŠ\t", time / 100.0);
 
 				time = fun(1, i, 100000);
 
-				printf("\t%.3lfÃÊ\t", time / 100.0);
+				printf("\t%.3lfÃƒÃŠ\t", time / 100.0);
 
 				time = fun(2, i, 100000);
 
-				printf("\t%.3lfÃÊ\t", time / 100.0);
+				printf("\t%.3lfÃƒÃŠ\t", time / 100.0);
 
 				printf("\n");
 			}
