@@ -258,7 +258,7 @@ void main()
 			printf("Random1000\tReverse1000\tRandom10000\tReverse10000\tRandom100000\tReverse100000\n");
 
 
-			for (int i = 0; i <= 7; i++) {
+			for (int i = 1; i <= 7; i++) {
 				
 				
 				int time = fun(1, i, 1000);
