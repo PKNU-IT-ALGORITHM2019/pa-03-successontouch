@@ -17,7 +17,7 @@ void print(int N) {
 }
 int rand_partition(int p, int r) {
 
-	int q = rand() % (r-p)+p;
+	int q = rand() % (r - p) + p;
 	int tmp = man[q];
 	man[q] = man[r];
 	man[r] = tmp;
@@ -47,7 +47,6 @@ void rand_quickSort(int p, int r) {
 	}
 }
 int mid_partition(int p, int r) {
-
 	int q = (p + r) / 2;
 	int tmp = man[q];
 	man[q] = man[r];
@@ -66,9 +65,7 @@ int mid_partition(int p, int r) {
 	man[i + 1] = man[r];
 	man[r] = tmp;
 	return i + 1;
-
 }
-
 void mid_quickSort(int p, int r) {
 	if (p < r) {
 		int q = mid_partition(p, r);
@@ -83,21 +80,21 @@ int partition(int p, int r) {
 	int tmp;
 	for (int j = p; j < r; j++) {
 		if (man[j] <= x) {
-			
+
 			i = i + 1;
 			tmp = man[i];
 			man[i] = man[j];
 			man[j] = tmp;
 		}
 	}
-	
+
 	tmp = man[i + 1];
 	man[i + 1] = man[r];
 	man[r] = tmp;
 	return i + 1;
 }
 void quickSort(int p, int r) {
-	
+
 	if (p < r) {
 		int q = partition(p, r);
 		quickSort(p, q - 1);
@@ -134,7 +131,7 @@ void insertion(int N) {
 	int j;
 	for (int i = 0; i < N - 1; i++) {
 		int check = man[i + 1];
-		for ( j = i; j > -1; j--) {
+		for (j = i; j > -1; j--) {
 			if (man[j] > check) {
 				man[j + 1] = man[j];
 			}
@@ -163,7 +160,7 @@ void selection(int N)
 		int tmp = man[remember];
 		man[remember] = man[i];
 		man[i] = tmp;
-		
+
 	}
 }
 void bubble(int N) {
@@ -180,19 +177,68 @@ void bubble(int N) {
 }
 void rand_create(int N) {
 	//·£´ý
-	
-	for (int i = 0; i < N; i++) {
-		man[i] = rand() % N+1;
-	}
-	
 
+	for (int i = 0; i < N; i++) {
+		man[i] = rand() % N + 1;
+	}
+
+
+
+}
+void heapify(int i, int N)
+{
+	int k;
+	if (2 * i + 1 > N - 1 && 2 * i + 2 > N - 1)
+		return;
+	if (man[2 * i + 2] == NULL)
+		k = 2 * i + 1;
+	else {
+		if (man[2 * i + 1] >= man[2 * i + 2])
+			k = 2 * i + 1;
+		else
+			k = 2 * i + 2;
+	}
+	if (man[i] >= man[k]) {
+		return;
+	}
+	int tmp = man[i];
+	man[i] = man[k];
+	man[k] = tmp;
+	heapify(k, N);
+
+}
+void build_heap(int N) {
+	for (int i = N / 2; i > 0; i--) {
+		heapify(i, N);
+	}
+}
+void heap_sort(int N) {
+
+	build_heap(N);
+	for (int i = N; i > 1; i--) {
+
+		int tmp = man[0];
+		man[0] = man[i];
+		man[i] = tmp;
+		N--;
+		heapify(0, N);
+	}
+}
+
+int check(const void *p, const void *q) {
+
+	return *(int *)p - *(int *)q;
+}
+void qsort(int N) {
+
+	qsort(man, N, sizeof(int), check);
 
 }
 void reverse_create(int N) {
 	//reverse
 
 	for (int i = 0; i < N; i++) {
-		man[i] = N-i;
+		man[i] = N - i;
 	}
 }
 int fun(int choice, int choice2, int num)
@@ -201,46 +247,54 @@ int fun(int choice, int choice2, int num)
 	for (int i = 0; i < 10; i++) {
 		switch (choice)
 		{
-			case 1: {
-				rand_create(num);
-				break;
-			}
-			case 2: {
-				reverse_create(num);
-				break;
-			}
-				
+		case 1: {
+			rand_create(num);
+			break;
+		}
+		case 2: {
+			reverse_create(num);
+			break;
+		}
+
 		}
 		start = clock();
 		switch (choice2) {
-			case 1: {
-				bubble(num);
-				break;
-			}
-			case 2: {
-				selection(num);
-				break;
-			}
-			case 3: {
-				insertion(num);
-				break;
-			}
-			case 4: {
-				mergeSort(0, num-1);
-				break;
-			}
-			case 5: {
-				quickSort(0, num-1);
-				break;
-			}
-			case 6: {
-				mid_quickSort(0, num-1);
-				break;
-			}
-			case 7: {
-				rand_quickSort(0, num-1);
-				break;
-			}
+		case 1: {
+			bubble(num);
+			break;
+		}
+		case 2: {
+			selection(num);
+			break;
+		}
+		case 3: {
+			insertion(num);
+			break;
+		}
+		case 4: {
+			mergeSort(0, num - 1);
+			break;
+		}
+		case 5: {
+			quickSort(0, num - 1);
+			break;
+		}
+		case 6: {
+			mid_quickSort(0, num - 1);
+			break;
+		}
+		case 7: {
+			rand_quickSort(0, num - 1);
+			break;
+		}
+		case 8: {
+			heap_sort(num - 1);
+			break;
+		}
+		case 9: {
+			qsort(num - 1);
+			break;
+		}
 		}
 		end = clock();
 		time += end - start;
@@ -251,42 +305,43 @@ void main()
 {
 	clock_t start, end;
 	srand((unsigned)time(NULL));
-	
+
 	int num;
-	
-			
-			printf("Random1000\tReverse1000\tRandom10000\tReverse10000\tRandom100000\tReverse100000\n");
 
 
-			for (int i = 1; i <= 7; i++) {
-				
-				
-				int time = fun(1, i, 1000);
-				printf("%.3lfÃÊ\t", time / 100.0);
+	printf("Random1000\tReverse1000\tRandom10000\tReverse10000\tRandom100000\tReverse100000\n");
 
-				time = fun(2, i, 1000);
-				printf("\t%.3lfÃÊ\t", time / 100.0);
 
-				
-				time = fun(1, i, 10000);
-				printf("\t%.3lfÃÊ\t", time / 100.0);
+	for (int i = 1; i <= 9; i++) {
 
-				time = fun(2, i, 10000);
 
-				printf("\t%.3lfÃÊ\t", time / 100.0);
+		int time = fun(1, i, 10);
+		printf("%.3lf초\t", time / 100.0);
 
-				time = fun(1, i, 100000);
+		time = fun(2, i, 10);
+		printf("\t%.3lf초\t", time / 100.0);
 
-				printf("\t%.3lfÃÊ\t", time / 100.0);
 
-				time = fun(2, i, 100000);
 
-				printf("\t%.3lfÃÊ\t", time / 100.0);
+		time = fun(1, i, 10000);
+		printf("\t%.3lf초\t", time / 100.0);
 
-				printf("\n");
-			}
-			
-		
+		time = fun(2, i, 10000);
+
+		printf("\t%.3lf초\t", time / 100.0);
+
+		time = fun(1, i, 100000);
+
+		printf("\t%.3lf초\t", time / 100.0);
+
+		time = fun(2, i, 100000);
+
+		printf("\t%.3lf초\t", time / 100.0);
+
+		printf("\n");
+	}
+
+
 	getchar();
 	getchar();
 }
